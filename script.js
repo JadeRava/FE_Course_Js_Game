@@ -8,6 +8,9 @@ const startBtn = document.getElementById('start-btn');
 const playerDiv = document.getElementById('player');
 const playerImg = playerDiv.querySelector('img');
 
+const instructionPopup = document.getElementById('instruction-popup');
+const startGameBtn = document.getElementById('start-game-btn');
+
 const runSprites = ['./images/Run1.png', './images/Run2.png'];
 const jumpSprite = './images/Jump.png';
 const deadSprite = './images/Dead.png';
@@ -67,13 +70,10 @@ function jumpPlayer() {
   }, 800);
 }
 
-
 function isColliding(player, obstacle) {
   const p = player.getBoundingClientRect();
   const o = obstacle.getBoundingClientRect();
-
   if (isJumping) return false;
-
   return (
     p.left < o.right &&
     p.right > o.left &&
@@ -99,16 +99,16 @@ function createObstacle() {
       setTimeout(() => gameOver(obstacle), 100);
     }
 
-   if (pos < -50) {
-  clearInterval(moveObs);
-  if (obstacle.parentElement) {
-    gamePage.removeChild(obstacle);
-  }
-  if (!isGameOver) {
-    score++;
-    scoreDisplay.textContent = 'Score: ' + score;
-  }
-}
+    if (pos < -50) {
+      clearInterval(moveObs);
+      if (obstacle.parentElement) {
+        gamePage.removeChild(obstacle);
+      }
+      if (!isGameOver) {
+        score++;
+        scoreDisplay.textContent = 'Score: ' + score;
+      }
+    }
   }, 20);
 
   obstacleIntervals.push(moveObs);
@@ -136,7 +136,7 @@ function gameOver(obstacle) {
   playerDiv.style.bottom = '20px';
   const playerLeft = playerDiv.offsetLeft;
 
-  playerPos = 20; 
+  playerPos = 20;
   obstacle.style.left = (playerLeft + 50) + 'px';
 
   const popup = document.getElementById('game-over-popup');
@@ -145,49 +145,46 @@ function gameOver(obstacle) {
 }
 
 document.getElementById('btn-yes').addEventListener('click', () => {
-  
   const popup = document.getElementById('game-over-popup');
   popup.style.display = 'none';
 
-  
   isGameOver = false;
   score = 0;
   scoreDisplay.textContent = 'Score: 0';
 
-  playerPos = 20; 
-  playerDiv.style.left = playerPos + 'px'; 
+  playerPos = 20;
+  playerDiv.style.left = playerPos + 'px';
 
   playerImg.style.width = '100%';
   playerImg.src = runSprites[0];
   playerDiv.style.bottom = '20px';
 
-  
   document.querySelectorAll('.obstacle').forEach(o => o.remove());
   obstacleIntervals.forEach(clearInterval);
   obstacleIntervals = [];
 
-  
   gamePage.style.pointerEvents = 'auto';
-
-  
   clearInterval(moveInterval);
 
-  
   startRunning();
   movePlayerForward();
   scrollBackground();
   startObstacleGeneration();
 });
 
-
 document.getElementById('btn-no').addEventListener('click', () => {
   window.location.reload();
 });
 
-
 startBtn.addEventListener('click', () => {
+  instructionPopup.style.display = 'flex';
+});
+
+startGameBtn.addEventListener('click', () => {
+  instructionPopup.style.display = 'none';
   mainPage.style.display = 'none';
-  gamePage.style.display = 'block';
+  gamePage.style.display = 'flex';
+
   startRunning();
   movePlayerForward();
   scrollBackground();
@@ -215,7 +212,3 @@ musicBtnOff.addEventListener('click', () => {
 
 document.addEventListener('keydown', startMusicOnce);
 document.addEventListener('click', startMusicOnce);
-
-
-
-
