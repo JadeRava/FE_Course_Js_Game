@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Game Project</title>
+    <link rel="stylesheet" href="style.css">
+    <style>
+@import url('https://fonts.googleapis.com/css2?family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100..900;1,100..900&family=Shadows+Into+Light&family=Whisper&display=swap');
+</style>
+</head>
+<body>
+    <button id="music-toggle" style="position: absolute; top: 10px; right: 10px; z-index: 10; padding: 8px 12px; border-radius: 6px; border: none; background-color: #444; color: white; cursor: pointer;">
+  Music ON
+</button>
+    <div id="main-page">
+        <h1>JACK THE RUNNER</h1>
+        <div id="container">
+            <h2 id="start-game">START NEW GAME</h2>
+            <button id="start-btn">PLAY </button>
+        </div>
+    </div>
+    <div id="game" style="display: none;">
+        <div id="game-container">
+            <div id="player">
+                <img src="./images/Stand.png" alt="player-idle">
+            </div>    
+            <div id="obstacle"></div>
+            <div id="score">Score: 0</div>
+        </div>
+    </div>
+    <div id="game-over-popup" style="display:none;">
+        <div id="popup-content">
+            <h2>Game Over!</h2>
+            <p>Do you want to play again?</p>
+            <button id="btn-yes">Yes</button>
+            <button id="btn-no">No</button>
+        </div>
+    </div>
+    <audio id="bg-music" src="./images/music-start.mp3" loop></audio>
+    <script src="script.js"></script>
+</body>
+</html>
