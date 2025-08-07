@@ -173,6 +173,32 @@ body {
   background-color: #da190b;
 }
 
+.music-toggle {
+  position: absolute;
+  top: 15px;
+  right: 15px;
+  background: none;
+  border: none;
+  padding: 5px;
+  cursor: pointer;
+  z-index: 100;
+}
+
+.music-toggle img {
+  width: 24px;
+  height: 24px;
+  opacity: 0.7;
+  transition: opacity 0.2s ease;
+}
+
+.music-toggle:hover img {
+  opacity: 1;
+}
+.music-toggle {
+  background-color: white;
+  border-radius: 50%;
+  padding: 5px;
+}
 @keyframes jump {
   0% { bottom: 20px; }
   50% { bottom: 260px; }

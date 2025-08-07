@@ -198,6 +198,21 @@ document.addEventListener('keydown', (e) => {
   if (e.code === 'Space') jumpPlayer();
 });
 
+const musicBtnOn = document.getElementById('music-toggle-on');
+const musicBtnOff = document.getElementById('music-toggle-off');
+
+musicBtnOn.addEventListener('click', () => {
+  music.pause();
+  musicBtnOn.style.display = 'none';
+  musicBtnOff.style.display = 'block';
+});
+
+musicBtnOff.addEventListener('click', () => {
+  music.play();
+  musicBtnOff.style.display = 'none';
+  musicBtnOn.style.display = 'block';
+});
+
 document.addEventListener('keydown', startMusicOnce);
 document.addEventListener('click', startMusicOnce);
 
